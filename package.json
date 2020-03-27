@@ -2,5 +2,12 @@
   "name": "rokus-scraper",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "pdf-lib": "^1.4.1"
+  },
+  "scripts": {
+    "parse": "node index.js parse",
+    "merge": "node index.js merge"
+  }
 }
