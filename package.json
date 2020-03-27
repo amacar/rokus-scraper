@@ -7,7 +7,7 @@
     "pdf-lib": "^1.4.1"
   },
   "scripts": {
-    "parse": "node index.js parse",
+    "scrape": "node index.js scrape",
     "merge": "node index.js merge"
   }
 }

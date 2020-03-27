@@ -15,13 +15,13 @@ npm install or yarn
 **Scrape pdfs**
 
 ```sh
-npm run parse pdf or yarn parse pdf
+npm run scrape pdf or yarn scrape pdf
 ```
 
 **Scrape answers (if they exist)**
 
 ```sh
-npm run parse answers or yarn parse answers
+npm run scrape answers or yarn scrape answers
 ```
 
 **Merge pdfs with answers**

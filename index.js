@@ -30,7 +30,7 @@ const merge = async () => {
   }
 };
 
-const parse = async type => {
+const scrape = async type => {
   const folderName = `${filename}${type}`;
   prepareTempFolder(folderName);
   for (let i = 1; i <= lastPage; i++) {
@@ -47,14 +47,14 @@ const parse = async type => {
   const option = process.argv[2];
 
   switch (option) {
-    case 'parse':
+    case 'scrape':
       const type = process.argv[3];
-      await parse(type);
-      console.log('parsing finished');
+      await scrape(type);
+      console.log('scraping finished');
       break;
     case 'merge':
       await merge();
-      console.log('merge finished');
+      console.log('merging finished');
       break;
     default:
       console.log('Unsupported command');
