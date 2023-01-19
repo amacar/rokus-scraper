@@ -1,18 +1,18 @@
-const http = require('https');
-const fs = require('fs');
-const { PDFDocument } = require('pdf-lib');
+const http = require("https");
+const fs = require("fs");
+const { PDFDocument } = require("pdf-lib");
 
-const token = 'token';
-const filename = 'R5DRU5_sdz';
-const lastPage = 132;
+const token = "token";
+const filename = "SLOINJAZ_SLO1_Celota_SS_SDZ";
+const lastPage = 216;
 
-const prepareTempFolder = filename => {
+const prepareTempFolder = (filename) => {
   if (!fs.existsSync(filename)) {
     fs.mkdirSync(filename);
   }
 };
 
-const timeout = delay => new Promise(resolve => setTimeout(resolve, delay));
+const timeout = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 
 const merge = async () => {
   const folderName = `${filename}merged`;
@@ -30,12 +30,14 @@ const merge = async () => {
   }
 };
 
-const scrape = async type => {
+const scrape = async (type) => {
   const folderName = `${filename}${type}`;
   prepareTempFolder(folderName);
   for (let i = 1; i <= lastPage; i++) {
     const file = fs.createWriteStream(`${folderName}/${i}.pdf`);
-    http.get(`https://api-folio.rokus-klett.si/v1/${type}/${filename}/${i}?token=${token}`, response => response.pipe(file));
+    http.get(`https://api-folio.rokus-klett.si/v1/${type}/${filename}/${i}?token=${token}`, (response) =>
+      response.pipe(file)
+    );
 
     if (i % 25 === 0) {
       await timeout(25000);
@@ -47,16 +49,16 @@ const scrape = async type => {
   const option = process.argv[2];
 
   switch (option) {
-    case 'scrape':
+    case "scrape":
       const type = process.argv[3];
       await scrape(type);
-      console.log('scraping finished');
+      console.log("scraping finished");
       break;
-    case 'merge':
+    case "merge":
       await merge();
-      console.log('merging finished');
+      console.log("merging finished");
       break;
     default:
-      console.log('Unsupported command');
+      console.log("Unsupported command");
   }
 })();
